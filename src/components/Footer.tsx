@@ -3,8 +3,9 @@ import Link from "next/link";
 const footerLinks = {
   navigation: [
     { href: "/", label: "Home" },
-    { href: "/services", label: "Services" },
-    { href: "/case-studies", label: "Case Studies" },
+    { href: "/#services", label: "Services" },
+    { href: "/#wholesale", label: "Wholesale" },
+    { href: "/#success-stories", label: "Success Stories" },
     { href: "/about", label: "About" },
     { href: "/blog", label: "Blog" },
     { href: "/#contact", label: "Contact" },
@@ -14,6 +15,14 @@ const footerLinks = {
     { href: "/terms", label: "Terms of Service" },
   ],
 };
+
+// Social media links - hidden in UI, unhide when ready
+const socialLinks = [
+  { href: "https://linkedin.com/company/eridecommerce", label: "LinkedIn", icon: "linkedin" },
+  { href: "https://facebook.com/eridecommerce", label: "Facebook", icon: "facebook" },
+  { href: "https://instagram.com/eridecommerce", label: "Instagram", icon: "instagram" },
+  { href: "https://wa.me/1234567890", label: "WhatsApp", icon: "whatsapp" },
+];
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -85,6 +94,15 @@ export default function Footer() {
               Contact Us
             </Link>
           </div>
+        </div>
+
+        {/* Social links - hidden, remove 'sr-only' and add flex to display */}
+        <div className="mt-8 sr-only" aria-hidden="true">
+          {socialLinks.map((link) => (
+            <a key={link.label} href={link.href} target="_blank" rel="noopener noreferrer">
+              {link.label}
+            </a>
+          ))}
         </div>
 
         <div className="mt-16 pt-8 border-t border-slate-700 flex flex-col sm:flex-row justify-between items-center gap-4">

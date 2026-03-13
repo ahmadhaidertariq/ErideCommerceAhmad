@@ -1,28 +1,42 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const navLinks = [
   { href: "/", label: "Home" },
-  { href: "/services", label: "Services" },
-  { href: "/case-studies", label: "Case Studies" },
+  { href: "/#services", label: "Services" },
+  { href: "/#wholesale", label: "Wholesale" },
+  { href: "/#success-stories", label: "Success Stories" },
   { href: "/about", label: "About" },
   { href: "/blog", label: "Blog" },
 ];
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [logoError, setLogoError] = useState(false);
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200/80">
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           <Link href="/" className="flex items-center gap-2 group">
-            <span className="text-2xl font-bold text-primary group-hover:text-primary-dark transition-colors">
-              Eride<span className="text-accent">Commerce</span>
-            </span>
+            {!logoError ? (
+              <Image
+                src="/logo.png"
+                alt="ErideCommerce"
+                width={180}
+                height={48}
+                className="h-10 w-auto object-contain"
+                onError={() => setLogoError(true)}
+              />
+            ) : (
+              <span className="text-2xl font-bold text-primary group-hover:text-primary-dark transition-colors">
+                Eride<span className="text-accent">Commerce</span>
+              </span>
+            )}
           </Link>
 
           {/* Desktop navigation */}
